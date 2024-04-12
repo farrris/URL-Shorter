@@ -57,7 +57,7 @@ class ShortUrlController extends Controller
         return response()->json([
             "msg" => "success",
             "shortUrl" => ShortUrlResource::make($shortUrl)
-        ]);
+        ], 201);
     }
 
 
