@@ -1,0 +1,90 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "URL Shorter",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "Server"
+        }
+    ],
+    "paths": {
+        "/link/": {
+            "post": {
+                "tags": [
+                    "ShortUrl"
+                ],
+                "summary": "Метод для создания новой сокращенной ссылки",
+                "description": "Метод для создания новой сокращенной ссылки",
+                "operationId": "createShortUrl",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "example": "https://google.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "short_url": {
+                                            "$ref": "#/components/schemas/ShortUrl"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ShortUrl": {
+                "title": "ShortUrl",
+                "description": "Сокращенная ссылка",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "original_url": {
+                        "title": "original_url",
+                        "description": "Оригинальная ссылка",
+                        "type": "string",
+                        "example": "https://google.com"
+                    },
+                    "short_url": {
+                        "title": "short_url",
+                        "description": "Сокращенная ссылка",
+                        "type": "string",
+                        "example": "http://localhost/HvmYmHHH"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ShortUrl"
+                }
+            }
+        }
+    }
+}

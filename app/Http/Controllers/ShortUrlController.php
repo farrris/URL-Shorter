@@ -17,6 +17,38 @@ class ShortUrlController extends Controller
         
     }
 
+    /**
+     * @OA\Post(
+     *     path="/link/",
+     *     operationId="createShortUrl",
+     *     tags={"ShortUrl"},
+     *     description="Метод для создания новой сокращенной ссылки",
+     *     summary="Метод для создания новой сокращенной ссылки",
+     *     @OA\RequestBody(
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *              @OA\Property(property="url", type="string", example="https://google.com"),
+     *          )
+     *      )
+     *    ),
+     *    @OA\Response(response="200",
+     *          description="OK",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                 @OA\Property(
+     *                     property="short_url",
+     *                     ref="#/components/schemas/ShortUrl"
+     *                 ),
+     *              )
+     *          )
+     *      ),
+     * )
+     * 
+     * @param CreateShortUrlRequest $request
+     * @return JsonResponse
+     **/
     public function createShortUrl(CreateShortUrlRequest $request): JsonResponse
     {   
         $validated = $request->validated();
@@ -27,6 +59,7 @@ class ShortUrlController extends Controller
             "shortUrl" => ShortUrlResource::make($shortUrl)
         ]);
     }
+
 
     public function redirectByShortUrl(ShortUrl $shortUrl): RedirectResponse
     {
